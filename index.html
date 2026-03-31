@@ -28,11 +28,18 @@
         }
         .musica-container {
             margin-top: 30px;
-            background: white;
-            padding: 25px;
+            background: #ffffff;
+            padding: 30px;
             border-radius: 60px;
             display: inline-block;
-            border: 5px solid #00ffff;
+            border: 6px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        /* Estilo para deixar o player mais visível */
+        audio {
+            width: 300px;
+            height: 50px;
+            filter: drop-shadow(2px 2px 2px #333);
         }
     </style>
 </head>
@@ -46,12 +53,13 @@
     </div>
 
     <div class="musica-container">
-        <p style="font-size: 20px;">🐾 <b>CLIQUE NO PLAY ABAIXO!</b> 🐾</p>
+        <p style="font-size: 22px; color: #008b8b;"><b>🐾 CLIQUE NO PLAY ABAIXO! 🐾</b></p>
         
         <audio controls loop preload="auto">
-            <source src="./musica.mp3" type="audio/mpeg">
+            <source src="musica.mp3" type="audio/mpeg">
             Seu navegador não suporta áudio.
         </audio>
+        <p style="font-size: 12px; color: #666;">(Se o botão estiver cinza, aguarde 5 segundos e atualize a página)</p>
     </div>
 
 </body>
