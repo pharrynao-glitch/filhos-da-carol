@@ -5,35 +5,32 @@
     <title>filhos da Carol</title>
     <style>
         body {
-            /* Fundo Azul Claro com textura de Glitter Azul Intenso */
-            background-color: #add8e6; 
-            background-image: url('https://www.transparenttextures.com/patterns/paw-prints.png'), url('https://www.transparenttextures.com/patterns/glitter.png');
+            /* Fundo Azul Claro */
+            background-color: #add8e6;
+            /* EFEITO DE GLITTER AZUL DIRETO NO CÓDIGO */
+            background-image: 
+                radial-gradient(circle, #00ffff 1px, transparent 1px),
+                radial-gradient(circle, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
             background-attachment: fixed;
             text-align: center;
             padding: 20px;
             margin: 0;
-            
-            /* Adiciona um efeito de brilho suave no fundo */
-            animation: glitter 10s infinite linear;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            animation: brilhoFundo 3s infinite alternate;
         }
 
-        /* Animação para dar um brilho extra no fundo */
-        @keyframes glitter {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
+        @keyframes brilhoFundo {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 10px 10px, -10px -10px; }
         }
 
         h1 {
-            font-size: 55px; /* Título bem grande */
-            
-            /* AZUL BEM ESCURO (Marinho) PARA O TÍTULO */
-            color: #002b36; 
-            
-            /* Mantém um leve brilho neon azul atrás */
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; 
-            
+            font-size: 55px;
+            /* AZUL BEM ESCURO (MARINHO) */
+            color: #001a33; 
+            text-shadow: 2px 2px 15px rgba(0, 255, 255, 0.8);
             margin-bottom: 30px;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
 
         .fotos-container {
@@ -41,53 +38,51 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 40px;
         }
 
-        /* FOTOS IGUAIS E COM MOLDURA BRILHANTE */
         img {
             width: 300px;
             height: 300px;
             object-fit: cover;
             border: 10px solid white;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            margin: 10px;
-            transition: all 0.3s ease-in-out;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: 0.4s;
         }
 
-        /* EFEITO DE BRILHAR AO PASSAR O MOUSE (HOVER) */
         img:hover {
-            transform: scale(1.08) rotate(2deg); /* Aumenta e gira um pouquinho */
-            box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff; /* Neon azul intenso */
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 0 40px #00ffff;
             cursor: pointer;
         }
 
-        /* BOTÃO DE SOM MÁGICO (O que funcionou!) */
-        .botao-som {
-            background: #fff;
-            color: #002b36; /* Azul escuro no texto */
-            border: 5px solid #00ffff; /* Borda neon azul */
-            padding: 18px 40px;
-            font-size: 22px;
-            font-weight: bold;
+        .caixa-som {
+            margin-top: 40px;
+            background: white;
+            padding: 25px;
             border-radius: 60px;
-            cursor: pointer;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-            margin-top: 20px;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            transition: all 0.3s ease-in-out;
+            display: inline-block;
+            border: 6px solid #001a33;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
 
-        .botao-som:hover {
-            background: #00ffff; /* Fundo neon ao passar o mouse */
-            color: white; /* Texto branco */
-            transform: scale(1.1) translateY(-5px); /* Sobe um pouquinho */
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.6);
+        .botao-play {
+            background: #001a33;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
-        
-        #meuAudio {
-            display: none; /* Esconde o player padrão */
+
+        .botao-play:hover {
+            background: #00ffff;
+            color: #001a33;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -96,26 +91,25 @@
     <h1>✨ filhos da Carol ✨</h1>
 
     <div class="fotos-container">
-        <img src="gato.jpg" alt="Filho da Carol 1">
-        <img src="gatoo.jpg" alt="Filho da Carol 2">
+        <img src="gato.jpg">
+        <img src="gatoo.jpg">
     </div>
 
-    <button class="botao-som" onclick="tocarMusica()">🐾 CLIQUE AQUI PARA O SOM! 🐾</button>
+    <div class="caixa-som">
+        <p style="color: #001a33; font-weight: bold;">🐾 Toque abaixo para a música! 🐾</p>
+        <button class="botao-play" onclick="tocar()">▶ DAR O PLAY</button>
+    </div>
 
-    <audio id="meuAudio" loop preload="auto">
+    <audio id="musica" loop>
         <source src="musica.mp3" type="audio/mpeg">
-        Seu navegador não suporta áudio.
+        <source src="musica2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Função que você já testou e deu certo!
-        function tocarMusica() {
-            var audio = document.getElementById('meuAudio');
-            audio.play().then(() => {
-                alert("Aproveite a música dos gatinhos! 🎵🐾");
-            }).catch(error => {
-                alert("Erro ao tocar! Verifique se o arquivo musica.mp3 está no GitHub.");
-                console.error("Erro no áudio:", error);
+        function tocar() {
+            var audio = document.getElementById('musica');
+            audio.play().catch(function(error) {
+                alert("Erro! Verifique se o arquivo musica.mp3 está no seu GitHub.");
             });
         }
     </script>
