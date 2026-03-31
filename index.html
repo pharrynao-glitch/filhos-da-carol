@@ -2,87 +2,75 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>filhos da Carol</title>
     <style>
         body {
-            /* Fundo Azul Claro */
             background-color: #add8e6;
-            /* EFEITO DE GLITTER AZUL DIRETO NO CÓDIGO */
             background-image: 
-                radial-gradient(circle, #00ffff 1px, transparent 1px),
-                radial-gradient(circle, #ffffff 1px, transparent 1px);
-            background-size: 50px 50px, 30px 30px;
+                radial-gradient(white, rgba(255,255,255,.3) 2px, transparent 40px),
+                radial-gradient(#00ffff, rgba(0,255,255,.1) 1px, transparent 30px);
+            background-size: 100px 100px, 50px 50px;
             background-attachment: fixed;
             text-align: center;
-            padding: 20px;
-            margin: 0;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            animation: brilhoFundo 3s infinite alternate;
-        }
-
-        @keyframes brilhoFundo {
-            from { background-position: 0 0, 0 0; }
-            to { background-position: 10px 10px, -10px -10px; }
+            margin: 0; padding: 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1 {
-            font-size: 55px;
-            /* AZUL BEM ESCURO (MARINHO) */
-            color: #001a33; 
-            text-shadow: 2px 2px 15px rgba(0, 255, 255, 0.8);
-            margin-bottom: 30px;
+            font-size: 32px;
+            color: #001a33; /* Azul bem escuro */
+            text-shadow: 0 0 12px #ffffff;
+            margin: 20px 0;
         }
 
-        .fotos-container {
+        .fotos {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 20px;
         }
 
         img {
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
             object-fit: cover;
-            border: 10px solid white;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: 0.4s;
+            border: 8px solid white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        img:hover {
-            transform: scale(1.1) rotate(3deg);
-            box-shadow: 0 0 40px #00ffff;
-            cursor: pointer;
-        }
-
-        .caixa-som {
-            margin-top: 40px;
-            background: white;
+        .painel {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.9);
             padding: 25px;
-            border-radius: 60px;
+            border-radius: 40px;
             display: inline-block;
-            border: 6px solid #001a33;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            border: 4px solid #001a33;
+            width: 85%;
+            max-width: 300px;
         }
 
-        .botao-play {
+        .btn-magico {
             background: #001a33;
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 20px;
+            padding: 20px;
+            width: 100%;
+            font-size: 18px;
             font-weight: bold;
-            border-radius: 50px;
+            border-radius: 35px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: 0.3s;
+            box-shadow: 0 6px 0 #000;
+            transition: all 0.1s;
+            /* Remove o delay de clique no iOS */
+            touch-action: manipulation;
         }
 
-        .botao-play:hover {
-            background: #00ffff;
-            color: #001a33;
-            transform: scale(1.1);
+        .btn-magico:active {
+            box-shadow: 0 2px 0 #000;
+            transform: translateY(4px);
         }
     </style>
 </head>
@@ -90,28 +78,48 @@
 
     <h1>✨ filhos da Carol ✨</h1>
 
-    <div class="fotos-container">
+    <div class="fotos">
         <img src="gato.jpg">
         <img src="gatoo.jpg">
     </div>
 
-    <div class="caixa-som">
-        <p style="color: #001a33; font-weight: bold;">🐾 Toque abaixo para a música! 🐾</p>
-        <button class="botao-play" onclick="tocar()">▶ DAR O PLAY</button>
+    <div class="painel">
+        <p style="color: #001a33; margin-bottom: 15px;">🐾 <b>APERTE PARA O SOM!</b> 🐾</p>
+        <button class="btn-magico" id="playBtn">▶ COMEÇAR FESTA</button>
     </div>
 
-    <audio id="musica" loop>
+    <audio id="player" loop playsinline preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
-        <source src="musica2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function tocar() {
-            var audio = document.getElementById('musica');
-            audio.play().catch(function(error) {
-                alert("Erro! Verifique se o arquivo musica.mp3 está no seu GitHub.");
-            });
+        const btn = document.getElementById('playBtn');
+        const audio = document.getElementById('player');
+
+        // Função única para iOS e Android
+        function toggleAudio(e) {
+            e.preventDefault(); // Previne comportamento padrão do navegador
+            
+            if (audio.paused) {
+                audio.play().then(() => {
+                    btn.innerHTML = "🔊 TOCANDO...";
+                    btn.style.background = "#00ffff";
+                    btn.style.color = "#001a33";
+                }).catch(err => {
+                    console.log("Erro ao carregar áudio");
+                    alert("Ainda carregando... tente de novo em 3 segundos!");
+                });
+            } else {
+                audio.pause();
+                btn.innerHTML = "▶ COMEÇAR FESTA";
+                btn.style.background = "#001a33";
+                btn.style.color = "white";
+            }
         }
+
+        // Adiciona suporte para toque e clique de mouse
+        btn.addEventListener('touchstart', toggleAudio, false);
+        btn.addEventListener('click', toggleAudio, false);
     </script>
 
 </body>
