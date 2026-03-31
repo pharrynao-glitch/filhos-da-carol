@@ -5,9 +5,9 @@
     <title>filhos da Carol</title>
     <style>
         body {
-            /* Fundo azul claro com patinhas e glitter azul */
-            background-image: url('https://imgur.com/vHqYvQW.png');
-            background-size: cover;
+            /* Fundo Azul Claro com textura de Glitter e Patinhas */
+            background-color: #add8e6; 
+            background-image: url('https://www.transparenttextures.com/patterns/glitter.png'), url('https://www.transparenttextures.com/patterns/paw-prints.png');
             background-attachment: fixed;
             color: white;
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -17,7 +17,7 @@
         h1 {
             font-size: 50px;
             color: #fff;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
             margin-bottom: 20px;
         }
         .fotos-container {
@@ -29,16 +29,17 @@
         img {
             width: 300px;
             height: auto;
-            border: 5px solid #fff;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #00ffff;
+            border: 8px solid white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #00ffff;
         }
-        .musica {
+        .musica-box {
             margin-top: 30px;
-            background: rgba(0, 191, 255, 0.3);
-            padding: 20px;
+            background: rgba(0, 150, 255, 0.5);
+            padding: 25px;
             border-radius: 50px;
             display: inline-block;
+            border: 3px solid #fff;
         }
     </style>
 </head>
@@ -51,10 +52,11 @@
         <img src="gatoo.jpg" alt="Gatinho 2">
     </div>
 
-    <div class="musica">
-        <p>🎵 Clique no Play para ouvir! 🎵</p>
+    <div class="musica-box">
+        <p style="font-weight: bold;">🎵 Clique no Play para ouvir! 🎵</p>
         <audio controls loop>
             <source src="musica.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
         </audio>
     </div>
 
