@@ -5,6 +5,7 @@
     <title>filhos da Carol</title>
     <style>
         body {
+            /* Fundo Azul Claro com Brilho */
             background-color: #add8e6; 
             background-image: url('https://www.transparenttextures.com/patterns/paw-prints.png'), url('https://www.transparenttextures.com/patterns/glitter.png');
             background-attachment: fixed;
@@ -17,25 +18,33 @@
             font-size: 50px;
             color: #fff;
             text-shadow: 2px 2px 10px #00ffff, -2px -2px 10px #00ffff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
+        .fotos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        /* ESTILO PARA DEIXAR AS FOTOS IGUAIS */
         img {
-            width: 300px;
-            border: 8px solid white;
+            width: 300px; /* Largura fixa */
+            height: 300px; /* Altura fixa (pode cortar um pouco a foto, mas deixa igual) */
+            object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+            border: 10px solid white; /* Moldura branca */
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             margin: 10px;
         }
         .musica-container {
-            margin-top: 30px;
+            margin-top: 40px;
             background: #ffffff;
-            padding: 30px;
+            padding: 25px;
             border-radius: 60px;
             display: inline-block;
             border: 6px solid #00ffff;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
-        /* Estilo para deixar o player mais visível */
         audio {
             width: 300px;
             height: 50px;
@@ -47,9 +56,9 @@
 
     <h1>✨ filhos da Carol ✨</h1>
 
-    <div class="fotos">
-        <img src="gato.jpg">
-        <img src="gatoo.jpg">
+    <div class="fotos-container">
+        <img src="gato.jpg" alt="Filho da Carol 1">
+        <img src="gatoo.jpg" alt="Filho da Carol 2">
     </div>
 
     <div class="musica-container">
@@ -59,7 +68,6 @@
             <source src="musica.mp3" type="audio/mpeg">
             Seu navegador não suporta áudio.
         </audio>
-        <p style="font-size: 12px; color: #666;">(Se o botão estiver cinza, aguarde 5 segundos e atualize a página)</p>
     </div>
 
 </body>
