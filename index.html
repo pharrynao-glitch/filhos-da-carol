@@ -5,7 +5,7 @@
     <title>filhos da Carol</title>
     <style>
         body {
-            /* Fundo Azul com Patinhas e Glitter */
+            /* Fundo Azul Claro com Patinhas e Brilho */
             background-color: #add8e6; 
             background-image: url('https://www.transparenttextures.com/patterns/paw-prints.png'), url('https://www.transparenttextures.com/patterns/glitter.png');
             background-attachment: fixed;
@@ -35,35 +35,16 @@
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             margin: 10px;
+            
+            /* Efeito de transição suave */
+            transition: all 0.3s ease-in-out;
         }
-        .musica-container {
-            margin-top: 40px;
-            background: white;
-            padding: 25px;
-            border-radius: 60px;
-            display: inline-block;
-            border: 6px solid #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        }
-    </style>
-</head>
-<body>
-
-    <h1>✨ filhos da Carol ✨</h1>
-
-    <div class="fotos-container">
-        <img src="gato.jpg">
-        <img src="gatoo.jpg">
-    </div>
-
-    <div class="musica-container">
-        <p style="font-size: 22px; color: #008b8b;"><b>🐾 CLIQUE NO PLAY! 🐾</b></p>
         
-        <audio controls loop preload="auto">
-            <source src="musica2.mp3" type="audio/mpeg">
-            Seu navegador não suporta áudio.
-        </audio>
-    </div>
-
-</body>
-</html>
+        /* EFEITO DE GLITTER AO PASSAR O MOUSE (HOVER) */
+        img:hover {
+            transform: scale(1.05); /* Aumenta um pouquinho a foto */
+            box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff; /* Brilho neon intenso */
+            cursor: pointer;
+        }
+        
+        .musica-container {
